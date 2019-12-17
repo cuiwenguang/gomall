@@ -1,0 +1,35 @@
+server:
+  prefixurl: localhost:8080
+  runmode: debug
+  httpport: 8080
+  runtimerootpath: runtime/
+  readtimeout: 60
+  writetimeout: 60
+  timeformat: 20060102
+database:
+  type: mysql
+  user: root
+  password: 123456
+  host: 127.0.0.1
+  name: gomall
+  tableprefix: t_
+redis:
+  host: 127.0.0.1:6379
+  password: 123456
+  maxIdle: 30
+  maxactive: 30
+  idletimeout: 200
+logger:
+  logsavepath: logs/
+  logsavename: gomall
+  logfileext: log
+auth:
+  jwtsecret: token-secret
+  expiretime: 24 # hour
+pagger:
+  pagesize: 20
+media:
+  imagesavepath: upload/images/
+  imagemaxsize: 5 # 5M
+  imageallowexts: [.jpg, .png]
+  qrcodesavepath: qrcode/
