@@ -12,7 +12,6 @@ database:
   password: 123456
   host: 127.0.0.1
   name: gomall
-  tableprefix: t_
 redis:
   host: 127.0.0.1:6379
   password: 123456

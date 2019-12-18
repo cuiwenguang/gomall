@@ -2,11 +2,11 @@ package models
 
 type Account struct {
 	Model
-	Username string `gorm:"size:50"`
-	Password string `gorm:"type:varchar(100);unique"`
-	Email    string `gorm:"unique_index;size:50"`
-	Mobile   string `gorm:"unique_index;size:50"`
-	UserType string `gorm:"type:char(2);unique"`
+	Username string `gorm:"type:varchar(50)"`
+	Password string `gorm:"type:varchar(50);unique"`
+	Email    string `gorm:"unique_index;type:varchar(50)"`
+	Mobile   string `gorm:"unique_index;type:varchar(20)"`
+	UserType string `gorm:"type:char(10);unique"`
 }
 
 func GetAccountByEmail(email string) *Account {
