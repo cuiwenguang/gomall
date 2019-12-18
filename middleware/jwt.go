@@ -14,7 +14,7 @@ func JWT() gin.HandlerFunc {
 		var data interface{}
 
 		code = e.SUCCESS
-		tokenStr := c.Query("token")
+		tokenStr := c.GetHeader("Auth")
 		if tokenStr == "" {
 			code = e.BAD_REQUEST
 		} else {

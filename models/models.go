@@ -3,7 +3,7 @@ package models
 import (
 	"fmt"
 	"github.com/jinzhu/gorm"
-	_"github.com/jinzhu/gorm/dialects/mysql"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"gomall/pkg/settings"
 	"log"
 	"time"
@@ -12,9 +12,9 @@ import (
 var db *gorm.DB
 
 type Model struct {
-	ID int `gorm:"primary_key",json:"id"`
-	CreateAt time.Time `json:"create_at"`
-	UpdateAt time.Time `json:"update_at"`
+	ID       int `gorm:"primary_key"`
+	CreateAt time.Time
+	UpdateAt time.Time
 }
 
 func Setup() {
@@ -35,9 +35,11 @@ func Setup() {
 	db.Callback().Update().Replace("gorm:update_time_stamp", updateTimeStampForUpdateCallback)
 	db.DB().SetMaxIdleConns(10)
 	db.DB().SetMaxOpenConns(100)
+
+	db.AutoMigrate(&Account{}, &Profile{})
 }
 
-func CloseDB(){
+func CloseDB() {
 	defer db.Close()
 }
 

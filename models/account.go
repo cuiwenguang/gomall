@@ -2,14 +2,14 @@ package models
 
 type Account struct {
 	Model
-	Username string `json:"username"`
-	Password string `json:"password"`
-	Email    string `json:"email"`
-	Mobile   string `json:"mobile"`
-	UserType string `json:"user_type"`
+	Username string `gorm:"size:50"`
+	Password string `gorm:"type:varchar(100);unique"`
+	Email    string `gorm:"unique_index;size:50"`
+	Mobile   string `gorm:"unique_index;size:50"`
+	UserType string `gorm:"type:char(2);unique"`
 }
 
-func GetAccountByEmail(email string) *Account{
+func GetAccountByEmail(email string) *Account {
 	account := &Account{}
 	db.Where("email = ?", email).First(account)
 	return account
@@ -22,10 +22,9 @@ func (a *Account) ExistEmail() bool {
 }
 
 // Add 创建用户
-func (a *Account) Add() error  {
-	if err:= db.Create(a).Error; err != nil{
+func (a *Account) Add() error {
+	if err := db.Create(a).Error; err != nil {
 		return nil
 	}
 	return nil
 }
-
