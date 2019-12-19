@@ -21,13 +21,9 @@ type Config struct {
 	}
 	Database struct {
 		Type        string
-		User        string
-		Password    string
-		Host        string
-		Name        string
-		TablePrefix string
+		Connections map[string]string
 	}
-	Redis struct {
+	Redis map[string]struct {
 		Host        string
 		Password    string
 		MaxIdle     int
@@ -69,7 +65,6 @@ func Setup() {
 	}
 	AppConfig.Server.ReadTimeout = AppConfig.Server.ReadTimeout * time.Second
 	AppConfig.Server.WriteTimeout = AppConfig.Server.WriteTimeout * time.Second
-	AppConfig.Redis.IdleTimeout = AppConfig.Redis.IdleTimeout * time.Second
 	AppConfig.Media.ImageMaxSize = AppConfig.Media.ImageMaxSize * 1024 * 1024
 	AppConfig.Auth.ExpireTime = AppConfig.Auth.ExpireTime * time.Hour
 }

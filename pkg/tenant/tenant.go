@@ -18,19 +18,20 @@ type TenantInfo struct {
 	Domain  string
 	ConnStr string
 	Driver  string
-	db      *gorm.DB
+	DB      *gorm.DB
 }
 
 type MultiTenantHandlerFunc func(*web.Context)
 
 func DBProvider() []*TenantInfo {
+	// 配置文件或者redis中获取所有租户连接信息
 	return make([]*TenantInfo, 2)
 }
 
 func ResolverOrigin(ctx *gin.Context) string {
 	id := ctx.GetHeader("Origin")
 	if strings.TrimSpace(id) == "" {
-		id = "localhost"
+		id = "default"
 	}
 	return id
 }

@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"gomall/models"
+	"gomall/datasource"
 	"gomall/pkg/logging"
 	"gomall/pkg/settings"
 	"gomall/pkg/token"
@@ -14,14 +14,13 @@ import (
 
 func init() {
 	settings.Setup()
-	models.Setup()
+	datasource.Setup()
 	logging.Setup()
 	token.Setup()
 }
 
 func main() {
 	gin.SetMode(settings.AppConfig.Server.RunMode)
-
 	server := &http.Server{
 		Addr:           fmt.Sprintf(":%d", settings.AppConfig.Server.HTTPPort),
 		Handler:        routers.Init(),

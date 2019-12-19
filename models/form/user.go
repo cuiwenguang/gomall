@@ -11,5 +11,3 @@ type RegisterForm struct {
 	Password  string `json:"password" validate:"required"`
 	Password2 string `json:"password_2" validate:"eqfield=Password"`
 }
-
-
