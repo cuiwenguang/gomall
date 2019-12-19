@@ -7,7 +7,7 @@ import (
 	"gomall/pkg/token"
 )
 
-// JWT  middleware
+// Authorization  middleware
 func Authorization() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var code int

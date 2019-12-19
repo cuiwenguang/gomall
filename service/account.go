@@ -46,8 +46,8 @@ func (a *AccountService) LoginByEmail(email, password string) (string, int) {
 	if util.EncodeMD5(password) != account.Password {
 		return "", e.ERROR_USER_OR_PASSWORD
 	}
-	token, _ := token.Generate("localhost", email, password)
-	return token, e.SUCCESS
+	tokenStr, _ := token.Generate(a.RequestContext.Host, email, password)
+	return tokenStr, e.SUCCESS
 }
 
 func (a *AccountService) GetAccountByEmail(email string) *entity.Account {
