@@ -24,11 +24,9 @@ type Config struct {
 		Connections map[string]string
 	}
 	Redis map[string]struct {
-		Host        string
-		Password    string
-		MaxIdle     int
-		MaxActive   int
-		IdleTimeout time.Duration
+		Addr     string
+		Password string
+		DB       int
 	}
 	Logger struct {
 		LogSavePath string

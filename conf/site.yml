@@ -15,11 +15,11 @@ database:
 
 redis:
   default:
-    host: 127.0.0.1:6379
-    password: 123456
-    maxIdle: 30
-    maxactive: 30
-    idletimeout: 200
+    addr: 127.0.0.1:6379
+    db: 0
+  yaoxieda:
+    addr: 127.0.0.1:6379
+    db: 1
 
 logger:
   logsavepath: logs/

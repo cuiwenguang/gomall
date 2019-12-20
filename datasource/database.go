@@ -12,7 +12,7 @@ import (
 
 var dbs map[string]*gorm.DB
 
-func dbInit() {
+func initDB() {
 	var err error
 	dbs = make(map[string]*gorm.DB)
 	for k, v := range settings.AppConfig.Database.Connections {
