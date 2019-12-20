@@ -3,6 +3,7 @@ package datasource
 import (
 	"github.com/go-redis/redis"
 	"gomall/pkg/settings"
+	"gomall/pkg/web"
 )
 
 var redisMaps map[string]*redis.Client
@@ -19,6 +20,7 @@ func initRedis() {
 	}
 }
 
-func GetReids(domain string) *redis.Client {
+func GetReids(ctx *web.RequestContext) *redis.Client {
+	domain := GetDomain(ctx.Host)
 	return redisMaps[domain]
 }

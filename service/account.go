@@ -1,8 +1,6 @@
 package service
 
 import (
-	"github.com/jinzhu/gorm"
-	"gomall/datasource"
 	"gomall/models/entity"
 	"gomall/models/vo"
 	"gomall/pkg/e"
@@ -12,14 +10,12 @@ import (
 )
 
 type AccountService struct {
-	*web.RequestContext
-	*gorm.DB
+	Service
 }
 
 func NewAccountService(context *web.RequestContext) *AccountService {
 	a := &AccountService{
-		context,
-		datasource.GetDB(context),
+		InitService(context),
 	}
 	return a
 }

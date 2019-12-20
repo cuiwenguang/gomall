@@ -47,13 +47,7 @@ func CloseDB(domain string) {
 }
 
 func GetDB(req *web.RequestContext) *gorm.DB {
-	id := req.Host
-	if strings.TrimSpace(id) == "" ||
-		strings.Contains(id, "localhost") ||
-		strings.Contains(id, "127.0.0.1") {
-		id = "default"
-	}
-
+	id := GetDomain(req.Host)
 	return dbs[id]
 }
 
