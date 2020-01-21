@@ -1,4 +1,4 @@
-package datasource
+package storage
 
 import (
 	"github.com/go-redis/redis"
