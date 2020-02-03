@@ -3,18 +3,18 @@ package main
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"gomall/datasource"
 	"gomall/pkg/logging"
 	"gomall/pkg/settings"
 	"gomall/pkg/token"
 	"gomall/routers"
+	"gomall/storage"
 	"log"
 	"net/http"
 )
 
 func init() {
 	settings.Setup()
-	datasource.Setup()
+	storage.Setup()
 	logging.Setup()
 	token.Setup()
 }

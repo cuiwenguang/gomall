@@ -1,7 +1,7 @@
 package api
 
 import (
-	"gomall/models/vo"
+	"gomall/models"
 	"gomall/pkg/e"
 	"gomall/pkg/web"
 	"gomall/service"
@@ -9,7 +9,7 @@ import (
 )
 
 func Login(ctx *web.Context) {
-	form := &vo.LoginForm{}
+	form := &models.LoginForm{}
 	if err := ctx.BindJSON(form); err != nil {
 		ctx.Response(e.BAD_REQUEST)
 		return
@@ -21,7 +21,7 @@ func Login(ctx *web.Context) {
 }
 
 func Register(ctx *web.Context) {
-	form := &vo.RegisterForm{}
+	form := &models.RegisterForm{}
 	if err := ctx.BindJSON(form); err != nil {
 		ctx.Response(e.BAD_REQUEST)
 		return

@@ -1,8 +1,7 @@
 package service
 
 import (
-	"gomall/models/entity"
-	"gomall/models/vo"
+	"gomall/models"
 	"gomall/pkg/e"
 	"gomall/pkg/token"
 	"gomall/pkg/util"
@@ -21,7 +20,7 @@ func NewAccountService(context *web.RequestContext) *AccountService {
 }
 
 func (a *AccountService) RegisterByEmail(email, password string) int {
-	account := &entity.Account{
+	account := &models.Account{
 		Email:    email,
 		Password: util.EncodeMD5(password),
 	}
@@ -46,22 +45,20 @@ func (a *AccountService) LoginByEmail(email, password string) (string, int) {
 	return tokenStr, e.SUCCESS
 }
 
-func (a *AccountService) GetAccountByEmail(email string) *entity.Account {
-	account := &entity.Account{}
+func (a *AccountService) GetAccountByEmail(email string) *models.Account {
+	account := &models.Account{}
 	a.DB.Where("email = ?", email).First(account)
 	return account
 }
 
 func (a *AccountService) ExistEmail(email string) bool {
 	result := 0
-	var accounts []*vo.AccountVo
-	a.Find(&accounts)
-	a.DB.Select("id").Where("email = ?", email).Find(&entity.Account{}).Count(&result)
+	a.DB.Select("id").Where("email = ?", email).Count(result)
 	return result > 0
 }
 
 // Create 创建用户
-func (a *AccountService) Create(account *entity.Account) error {
+func (a *AccountService) Create(account *models.Account) error {
 	if err := a.DB.Create(account).Error; err != nil {
 		return nil
 	}
